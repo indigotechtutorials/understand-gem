@@ -1,7 +1,63 @@
 require "understand"
-user_prompt = if ARGV[0]
-  user_prompt
-else
-  "Help me understand my application more."
+require "bubbletea"
+require "lipgloss"
+
+class UnderstandCLI
+  include Bubbletea::Model
+  attr_accessor :ai_response_header, :ai_response
+  def initialize
+    @ai_response_header = "🔎 Understanding your codebase"
+    @ai_processing = false
+    @user_prompt = ""
+    @ai_response = ""
+  end
+
+  def init
+    [self, nil]
+  end
+
+  def update(message)
+    case message
+    when Bubbletea::KeyMessage
+      case message.to_s
+      when "enter"
+        if !@ai_processing && @user_prompt&.chars&.any?
+          @ai_processing = true
+          @user_prompt = ""
+          Understand.call(self)
+          [self, nil]
+        end
+        [self, nil]
+      when "esc", "ctrl+c"
+        [self, Bubbletea.quit]
+      when "backspace"
+        @user_prompt = @user_prompt[0..-2]
+        [self, nil]
+      when "space"
+        @user_prompt += " "
+        [self, nil]
+      else
+        @user_prompt += message.to_s
+        [self, nil]
+      end
+    end
+  end
+
+  def view
+    if @ai_processing
+      "#{@ai_response_header} \n \n AI: #{@ai_response}"
+    else
+      "💡 Understand your codebase now \n Enter your prompt: #{@user_prompt} \n\n (Press enter to submit)"
+    end
+  end
 end
-Understand.new(user_prompt).call
+
+Bubbletea.run(UnderstandCLI.new)
+
+# user_prompt = if ARGV[0]
+#   user_prompt
+# else
+#   "Help me understand my application more."
+# end
+
+#Understand.new(user_prompt).call
