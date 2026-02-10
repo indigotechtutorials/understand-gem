@@ -1,3 +1,7 @@
 require "understand"
-
-Understand.hello
+user_prompt = if ARGV[0]
+  user_prompt
+else
+  "Help me understand my application more."
+end
+Understand.new(user_prompt).call
