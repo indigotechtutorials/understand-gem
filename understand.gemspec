@@ -10,4 +10,5 @@ Gem::Specification.new do |s|
   s.homepage    =
     "https://rubygems.org/gems/understand"
   s.license       = "MIT"
+  s.add_dependency "rllama", "~> 1.0.3"
 end
