@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "understand"
-  s.version     = "0.0.0"
+  s.version     = "0.0.1"
   s.summary     = "Understand your codebase with a LLM"
   s.description = "A gem to help you understand your codebases using the power of LLM's ( not a vibe coding tool )"
   s.authors     = ["Indigo Tech"]
