@@ -1,6 +1,6 @@
 require "understand"
 require "bubbletea"
-require "lipgloss"
+require "rainbow"
 
 class UnderstandCLI
   include Bubbletea::Model
@@ -45,7 +45,7 @@ class UnderstandCLI
 
   def view
     if @ai_processing
-      "#{@ai_response_header} \n \n AI: #{@ai_response}"
+      "#{Rainbow(@ai_response_header).green} \n \n 🤖 AI: #{@ai_response}"
     else
       "💡 Understand your codebase now \n Enter your prompt: #{@user_prompt} \n\n (Press enter to submit)"
     end

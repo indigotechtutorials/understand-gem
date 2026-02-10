@@ -6,6 +6,7 @@ class Understand
     files = Dir.glob("**/*").select { |f| File.file?(f) }
     Thread.new do
       files.each do |file|
+        understand_cli.ai_response = ""
         prompt = "Help me understand my application"
         prompt_for_ai = prompt + "--- File path: #{file} Content: #{File.read(file)}"
         understand_cli.ai_response_header = "💡 🔎 Understanding #{file}"

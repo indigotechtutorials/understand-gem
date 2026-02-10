@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "understand"
-  s.version     = "0.0.1"
+  s.version     = "0.0.2"
   s.summary     = "Understand your codebase with a LLM"
   s.description = "A gem to help you understand your codebases using the power of LLM's ( not a vibe coding tool )"
   s.authors     = ["Indigo Tech"]
@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.license       = "MIT"
   s.add_dependency "rllama", "~> 1.0.3"
   s.add_dependency "bubbletea", "~> 0.1.0"
-  s.add_dependency "lipgloss", "~> 0.2.0"
+  s.add_dependency "rainbow", "~> 3.1.1"
 end
